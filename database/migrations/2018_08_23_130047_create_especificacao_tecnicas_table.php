@@ -17,7 +17,7 @@ class CreateEspecificacaoTecnicasTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->string('nome_produto')->nullable();
+            $table->text('nome_produto')->nullable();
             $table->date('data_criacao')->nullable();
             $table->string('diretorio_word')->nullable();
             $table->string('arquivo_word')->nullable();
