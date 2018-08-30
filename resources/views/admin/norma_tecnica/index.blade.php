@@ -4,7 +4,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">Secretarias</div>
+            <div class="card-header">Normas Técnicas</div>
 
             <div class="card-body">
 
@@ -36,6 +36,7 @@
         dataTable = $('#tabela_registros').DataTable({
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: '{!! route('admin.norma_tecnica.datatable') !!}',
             language: dataTableLang,
             dom: 'Bfrtip',

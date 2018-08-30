@@ -6,9 +6,15 @@
         <div class="card">
             <div class="card-header">Especificações Técnicas</div>
 
-            <div class="card-body">
+            <div class="card-body" style="overflow: scroll">
 
                 <a href="{{route('admin.especificacao_tecnica.novo')}}" class="btn btn-info">Novo Registro</a>
+
+                @if(isset($_GET['inativos']))
+                    <a href="{{route('admin.especificacao_tecnica.index')}}" class="btn btn-success">Exibir ativos</a>
+                @else 
+                    <a href="{{route('admin.especificacao_tecnica.index', ['inativos'=>true])}}" class="btn btn-primary">Exibir inativos</a>
+                @endif
                 <br><br>
 
                 <table class="table table-striped datatable" id="tabela_registros">
@@ -23,7 +29,7 @@
                             <td>Revisão</td>
                             <td>Cód. CATMAT</td>
                             <td>Combinação</td>
-                            <td>Arquivo</td>
+                            <td>Ativo</td>
 
                             <td>Ações</td>
                         </tr>
@@ -39,7 +45,8 @@
         dataTable = $('#tabela_registros').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! route('admin.especificacao_tecnica.datatable') !!}',
+            responsive: true,
+            ajax: '{!! route('admin.especificacao_tecnica.datatable', ['inativos'=> isset($_GET['inativos'])]) !!}',
             language: dataTableLang,
             dom: 'Bfrtip',
             buttons: [
@@ -64,7 +71,7 @@
                 {data: 'data_revisao'},
                 {data:'codigo_catmat'},
                 {data:'combinacao'},
-                {data:'arquivo_caminho'},
+                {data:'ativo'},
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ],
             fnDrawCallback: function() {

@@ -15,7 +15,7 @@ class EspecificacaoTecnica extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
-        'nome_produto', 'data_criacao', 'diretorio_word', 'arquivo_word', 'codigo_suprimentos', 'unidade', 'itens', 'tipo_especificacao_id', 'data_revisao', 'codigo_catmat', 'combinacao', 'arquivo_caminho'
+        'nome_produto', 'data_criacao', 'diretorio_word', 'arquivo_word', 'codigo_suprimentos', 'unidade', 'itens', 'tipo_especificacao_id', 'data_revisao', 'codigo_catmat', 'combinacao', 'arquivo_caminho', 'revisao', 'itens_revisados', 'ativo', 'objeto', 'descritivo', 'transferido', 'identificacao', 'numero_supri', 'obs'
     ];
 
     /**

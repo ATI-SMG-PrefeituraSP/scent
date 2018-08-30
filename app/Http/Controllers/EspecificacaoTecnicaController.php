@@ -148,9 +148,14 @@ class EspecificacaoTecnicaController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function datatable()
+    public function datatable(Request $request)
     {
-        return Datatables::of(EspecificacaoTecnica::query())
+        if($request->inativos == 1)
+            $query = EspecificacaoTecnica::where('ativo', 0);
+        else
+            $query = EspecificacaoTecnica::where('ativo', 1);
+
+        return Datatables::of($query)
         ->addColumn('action', function ($registro) {
 
             //prepara a função de deletar com o link certo
@@ -172,6 +177,9 @@ class EspecificacaoTecnicaController extends Controller
         })
         ->editColumn('data_revisao', function($registro){
             return Biblioteca::dateToStr($registro->data_revisao);
+        })
+        ->editColumn('ativo', function($registro){
+            return $registro->ativo == 0? 'Inativo':'Ativo';
         })
         ->make(true);
     }

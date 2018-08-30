@@ -93,7 +93,6 @@
                             
                             {{Form::select('tipo_especificacao_id', $tipo_especificacaos, (isset($registro)? $registro->tipo_especificacao_id : old('tipo_especificacao_id')), [
                                 'placeholder' => 'Selecione',
-                                'required' => true,
                                 'class' => ($errors->has('tipo_especificacao_id'))? "form-control select2 is-invalid":"form-control select2"
                             ])}}
                             @if ($errors->has('tipo_especificacao_id'))
@@ -135,19 +134,134 @@
                                 </span>
                             @endif
                         </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('ativo')) echo "text-danger" ?>">Ativo?</label>
+                            {{Form::select('ativo', [1=>'Sim', 0=>'Não'], (isset($registro)? $registro->ativo : old('ativo')), [
+                                'class' => ($errors->has('ativo'))? "form-control select2 is-invalid":"form-control select2"
+                            ])}}
+                            
+                            @if ($errors->has('ativo'))
+                                <span class="text-danger">
+                                {{ $errors->first('ativo') }}
+                                </span>
+                            @endif
+                        </div>
                     </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('revisao')) echo "text-danger" ?>">Revisão</label>
+                            {{Form::select('revisao', [1=>'Sim', 0=>'Não'], (isset($registro)? $registro->revisao : old('revisao')), [
+                                'placeholder' => 'Selecione',
+                                'class' => ($errors->has('revisao'))? "form-control select2 is-invalid":"form-control select2"
+                            ])}}
+                            
+                            @if ($errors->has('revisao'))
+                                <span class="text-danger">
+                                {{ $errors->first('revisao') }}
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('itens_revisados')) echo "text-danger" ?>">Nº Itens Revisados</label>
+                            <input type="number" name="itens_revisados" value="{{ isset($registro)? $registro->itens_revisados : old('itens_revisados') }}" class="form-control  <?php if($errors->has('itens_revisados')) echo "is-invalid" ?>">
+                            @if ($errors->has('itens_revisados'))
+                                <span class="text-danger">
+                                {{ $errors->first('itens_revisados') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('objeto')) echo "text-danger" ?>">Objeto</label>
+                            <input type="text" name="objeto" value="{{ isset($registro)? $registro->objeto : old('objeto') }}" class="form-control  <?php if($errors->has('objeto')) echo "is-invalid" ?>">
+                            @if ($errors->has('objeto'))
+                                <span class="text-danger">
+                                {{ $errors->first('objeto') }}
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('descritivo')) echo "text-danger" ?>">Descritivo</label>
+                            <input type="text" name="descritivo" value="{{ isset($registro)? $registro->descritivo : old('descritivo') }}" class="form-control  <?php if($errors->has('descritivo')) echo "is-invalid" ?>">
+                            @if ($errors->has('descritivo'))
+                                <span class="text-danger">
+                                {{ $errors->first('descritivo') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('transferido')) echo "text-danger" ?>">Transf. Supri</label>
+                            {{Form::select('transferido', [1=>'Sim', 0=>'Não'], (isset($registro)? $registro->transferido : old('transferido')), [
+                                'placeholder' => 'Selecione',
+                                'class' => ($errors->has('transferido'))? "form-control select2 is-invalid":"form-control select2"
+                            ])}}
+                            
+                            @if ($errors->has('transferido'))
+                                <span class="text-danger">
+                                {{ $errors->first('transferido') }}
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('identificacao')) echo "text-danger" ?>">Identificação</label>
+                            <input type="text" name="identificacao" value="{{ isset($registro)? $registro->identificacao : old('identificacao') }}" class="form-control  <?php if($errors->has('identificacao')) echo "is-invalid" ?>">
+                            @if ($errors->has('identificacao'))
+                                <span class="text-danger">
+                                {{ $errors->first('identificacao') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('numero_supri')) echo "text-danger" ?>">Nº SUPRI</label>
+                            <input type="text" data-mask="000000-0" name="numero_supri" value="{{ isset($registro)? $registro->numero_supri : old('numero_supri') }}" class="form-control  <?php if($errors->has('numero_supri')) echo "is-invalid" ?>">
+                            @if ($errors->has('numero_supri'))
+                                <span class="text-danger">
+                                {{ $errors->first('numero_supri') }}
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('obs')) echo "text-danger" ?>">Observação</label>
+                            <textarea type="text" name="obs" class="form-control  <?php if($errors->has('obs')) echo "is-invalid" ?>">{{ isset($registro)? $registro->obs : old('obs') }}</textarea>
+                            @if ($errors->has('obs'))
+                                <span class="text-danger">
+                                {{ $errors->first('obs') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="<?php if($errors->has('arquivo_caminho')) echo "text-danger" ?>">Arquivo</label>
-                            <input type="text" name="arquivo_caminho" value="{{ isset($registro)? $registro->arquivo_caminho : old('arquivo_caminho') }}" class="form-control col-md-6  <?php if($errors->has('arquivo_caminho')) echo "is-invalid" ?>">
+                            <br>
+                            <input style="display: inline" id="arquivo_caminho" type="text" name="arquivo_caminho" value="{{ isset($registro)? $registro->arquivo_caminho : old('arquivo_caminho') }}" class="form-control col-md-6  <?php if($errors->has('arquivo_caminho')) echo "is-invalid" ?>">
                             @if ($errors->has('arquivo_caminho'))
                                 <span class="text-danger">
                                 {{ $errors->first('arquivo_caminho') }}
                                 </span>
                             @endif
+
+                            <button style="display: inline" class="btn btn-warning" type="button" onclick="copiarParaClipboard('arquivo_caminho')">Copiar</button>
                         </div>
                     </div>
+
+
 
                     <br>
                     <div class="row">

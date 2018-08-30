@@ -25,35 +25,36 @@ class GenerateMenus
 
             //os cadastros só podem ser acessados por usuários autenticados
             if (Auth::check()) {
-                //adiciona o menu de cadastros
-                $menu->add('Cadastros', ['class' => 'nav-item dropdown'])
-                ->prepend('<i class="fas fa-fw fa-database"> </i>  <span>')
+
+                //adiciona o cadastro de cargos
+                $menu->add('Especificações Técnicas', ['route' => 'admin.especificacao_tecnica.index', 'class' => 'nav-item'])
+                ->prepend('<i class="fas fa-fw fa-tasks"> </i>  <span>')
                 ->append('</span>')
                 ->link->attr([
-                    'class'=>'nav-link dropdown-toggle',
+                    'class'=>'nav-link',
                     'id' => 'cadastrosDropdown',
-                    'href' => '#',
-                    'role'=>"button",
-                    'data-toggle'=>"dropdown",
-                    'aria-haspopup'=>"true",
-                    'aria-expanded'=>"false",
                 ]);
 
                 //adiciona o cadastro de cargos
-                $menu->cadastros->add('Especificações Técnicas', ['route' => 'admin.especificacao_tecnica.index', 'class' => 'dropdown-item'])
-                ->prepend('<span>')
-                ->append('</span>');
+                $menu->add('Normas Técnicas', ['route' => 'admin.norma_tecnica.index', 'class' => 'nav-item'])
+                ->prepend('<i class="fas fa-fw fa-pen-alt"> </i>  <span>')
+                ->append('</span>')
+                ->link->attr([
+                    'class'=>'nav-link',
+                    'id' => 'cadastrosDropdown',
+                ]);
 
-                //adiciona o cadastro de cargos
-                $menu->cadastros->add('Normas Técnicas', ['route' => 'admin.norma_tecnica.index', 'class' => 'dropdown-item'])
-                ->prepend('<span>')
-                ->append('</span>');
-
-
-                //adiciona o cadastro de usuários
-                $menu->cadastros->add('Usuários', ['route' => 'admin.usuario.index', 'class' => 'dropdown-item'])
-                ->prepend('<span>')
-                ->append('</span>');
+                //só vai exibir cadastro de usuários para o usuário admin
+                if (Auth::id() == 1) {
+                    //adiciona o cadastro de usuários
+                    $menu->add('Usuários', ['route' => 'admin.usuario.index', 'class' => 'nav-item'])
+                    ->prepend('<i class="fas fa-fw fa-users"> </i>  <span>')
+                    ->append('</span>')
+                    ->link->attr([
+                        'class'=>'nav-link',
+                        'id' => 'cadastrosDropdown',
+                    ]);
+                }
             }
 
 

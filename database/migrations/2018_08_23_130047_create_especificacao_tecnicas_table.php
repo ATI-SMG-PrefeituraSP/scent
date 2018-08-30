@@ -30,6 +30,16 @@ class CreateEspecificacaoTecnicasTable extends Migration
             $table->string('arquivo_caminho')->nullable();
             $table->string('combinacao')->nullable();
 
+            $table->boolean('ativo')->nullable();
+            $table->boolean('revisao')->nullable();
+            $table->integer('itens_revisados')->nullable();
+            $table->string('objeto')->nullable();
+            $table->string('descritivo')->nullable();
+            $table->boolean('transferido')->nullable();
+            $table->string('identificacao')->nullable();
+            $table->string('numero_supri')->nullable();
+            $table->text('obs')->nullable();
+
             //chaves estrangeiras
             $table->integer('tipo_especificacao_id', false, true)->nullable();
             $table->foreign('tipo_especificacao_id')->references('id')->on('tipo_especificacaos')->onDelete('set null');

@@ -167,3 +167,18 @@ function baixarArquivo(url, arquivo)
         }
     });
 }
+
+/**
+ * Copia o conteúdo de um txt para o clipboard
+ * @param {*} id do txt
+ */
+function copiarParaClipboard(id) {
+    /* Get the text field */
+    var copyText = document.getElementById(id);
+  
+    /* Select the text field */
+    copyText.select();
+  
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+}
