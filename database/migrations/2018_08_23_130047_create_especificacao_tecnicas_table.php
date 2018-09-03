@@ -25,6 +25,7 @@ class CreateEspecificacaoTecnicasTable extends Migration
             $table->string('unidade')->nullable();
             $table->integer('itens')->nullable();
             $table->string('codigo_catmat')->nullable();
+            $table->string('codigo_bec')->nullable();
             $table->date('data_revisao')->nullable();
             $table->string('arquivo')->nullable();
             $table->string('arquivo_caminho')->nullable();

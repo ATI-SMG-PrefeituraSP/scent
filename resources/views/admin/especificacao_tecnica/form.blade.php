@@ -235,6 +235,19 @@
                             @endif
                         </div>
                         <div class="form-group col-md-6">
+                            <label class="<?php if($errors->has('codigo_bec')) echo "text-danger" ?>">Código BEC</label>
+                            <input type="text" name="codigo_bec" value="{{ isset($registro)? $registro->codigo_bec : old('codigo_bec') }}" class="form-control  <?php if($errors->has('codigo_bec')) echo "is-invalid" ?>">
+                            @if ($errors->has('codigo_bec'))
+                                <span class="text-danger">
+                                {{ $errors->first('codigo_bec') }}
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
                             <label class="<?php if($errors->has('obs')) echo "text-danger" ?>">Observação</label>
                             <textarea type="text" name="obs" class="form-control  <?php if($errors->has('obs')) echo "is-invalid" ?>">{{ isset($registro)? $registro->obs : old('obs') }}</textarea>
                             @if ($errors->has('obs'))
@@ -243,14 +256,10 @@
                                 </span>
                             @endif
                         </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label class="<?php if($errors->has('arquivo_caminho')) echo "text-danger" ?>">Arquivo</label>
                             <br>
-                            <input style="display: inline" id="arquivo_caminho" type="text" name="arquivo_caminho" value="{{ isset($registro)? $registro->arquivo_caminho : old('arquivo_caminho') }}" class="form-control col-md-6  <?php if($errors->has('arquivo_caminho')) echo "is-invalid" ?>">
+                            <input style="display: inline" id="arquivo_caminho" type="text" name="arquivo_caminho" value="{{ isset($registro)? $registro->arquivo_caminho : old('arquivo_caminho') }}" class="form-control col-md-10  <?php if($errors->has('arquivo_caminho')) echo "is-invalid" ?>">
                             @if ($errors->has('arquivo_caminho'))
                                 <span class="text-danger">
                                 {{ $errors->first('arquivo_caminho') }}
