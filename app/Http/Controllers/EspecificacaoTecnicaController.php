@@ -96,7 +96,6 @@ class EspecificacaoTecnicaController extends Controller
         $request->validate([
             //valida consistencia
             'data_criacao' => 'date_format:"d/m/Y"',
-            'data_revisao' => 'date_format:"d/m/Y"',
         ]);
 
         //verifica se está no alterar ou no salvar
@@ -116,7 +115,17 @@ class EspecificacaoTecnicaController extends Controller
 
         //converte os campos de data
         $registro->data_criacao = Biblioteca::strToDate($registro->data_criacao);
-        $registro->data_revisao = Biblioteca::strToDate($registro->data_revisao);
+
+        if($registro->data_revisao != "")
+        {
+            //valida as informações recebidas
+            $request->validate([
+                //valida consistencia
+                'data_revisao' => 'date_format:"d/m/Y"',
+            ]);
+
+            $registro->data_revisao = Biblioteca::strToDate($registro->data_revisao);
+        }
 
         //verifica se possui arquivo
         if ($request->arquivo) {
